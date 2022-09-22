@@ -15,6 +15,11 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation( "org.projectlombok:lombok:1.18.12")
+	annotationProcessor( "org.projectlombok:lombok:1.18.12")
+
+	implementation("io.github.microutils:kotlin-logging-jvm:2.0.6")
 }
 
 tasks.named('test') {
