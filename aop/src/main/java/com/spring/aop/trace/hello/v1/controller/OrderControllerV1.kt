@@ -1,9 +1,9 @@
-package com.spring.aop.trace.hello.v1.contoller
+package com.spring.aop.trace.hello.v1.controller
 
 import com.spring.aop.trace.hello.v1.HelloTraceV1
 import com.spring.aop.trace.hello.v1.service.OrderServiceV1
 import lombok.RequiredArgsConstructor
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -13,8 +13,8 @@ class OrderControllerV1(
     private val orderServiceV1: OrderServiceV1,
     private val trace: HelloTraceV1
 ) {
-    @RequestMapping("/v1/request")
-    fun request(@RequestParam itemId: String): String {
+    @GetMapping
+    fun request(@RequestParam(required = false) itemId: String): String {
         val status = this.trace.begin("OrderControllerV1.request")
 
         try {
