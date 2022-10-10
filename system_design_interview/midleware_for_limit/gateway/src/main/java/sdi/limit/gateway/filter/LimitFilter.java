@@ -2,30 +2,42 @@ package sdi.limit.gateway.filter;
 
 import io.github.bucket4j.*;
 import io.github.bucket4j.distributed.proxy.ProxyManager;
-import org.springframework.cache.Cache;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import sdi.limit.gateway.dto.RedisBucket;
+import sdi.limit.gateway.service.BucketRedisService;
 
 import java.time.Duration;
 
+@RequiredArgsConstructor
 @Component
 public class LimitFilter extends AbstractGatewayFilterFactory<LimitFilter.Config> {
+    private final BucketRedisService bucketRedisService;
 
-    private ProxyManager<String> buckets;
-
-    public LimitFilter() {
-        super(Config.class);
-    }
+    @Value("${server.name}")
+    private String serverName;
 
     @Override
     public GatewayFilter apply(Config config) {
+        Bucket bucket = bucketRedisService.getBucket(serverName).getBucket();
 
-        //Bucket bucket =
+        if (bucket.tryConsume(1)) {
+            return (exchange, chain) -> {
+                exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
+                return exchange.getResponse().setComplete();
+            };
+        }
+
+        RedisBucket newBucket = new RedisBucket(serverName, this.creatNewBucket());
+        bucketRedisService.setBucket(newBucket);
 
         return (exchange, chain) -> {
-            exchange.getResponse().setStatusCode(HttpStatus.TOO_MANY_REQUESTS);
+            exchange.getResponse().setStatusCode(HttpStatus.CREATED);
             return exchange.getResponse().setComplete();
         };
     }
