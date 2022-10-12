@@ -5,3 +5,13 @@ spring:
   redis:
     host: localhost
     port: 6379
+  cloud:
+    gateway:
+      routes:
+        - id: rate_limiter_route
+          uri: http://localhost:9999
+          filters:
+            - name: CustomRedisRateLimiter
+                args:
+                  rate-limiter: "#{@customRedisRateLimiter}"
+                  key-resolver: "#{@apiUrlKeyResolver}"

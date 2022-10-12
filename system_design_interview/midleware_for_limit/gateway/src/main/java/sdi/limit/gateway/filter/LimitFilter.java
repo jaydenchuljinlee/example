@@ -14,6 +14,7 @@ import sdi.limit.gateway.service.BucketRedisService;
 
 import java.time.Duration;
 
+@Deprecated
 @RequiredArgsConstructor
 @Component
 public class LimitFilter extends AbstractGatewayFilterFactory<LimitFilter.Config> {
