@@ -1,5 +1,6 @@
 server:
   name: api-1
+  port: 9999
 
 spring:
   redis:
@@ -7,11 +8,21 @@ spring:
     port: 6379
   cloud:
     gateway:
+      filter:
+        request-rate-limiter:
+          deny-empty-key: true
       routes:
         - id: rate_limiter_route
-          uri: http://localhost:9999
+          uri: http://localhost:8090
+          predicates:
+            - Path=/api/v1/**
           filters:
-            - name: CustomRedisRateLimiter
-                args:
-                  rate-limiter: "#{@customRedisRateLimiter}"
-                  key-resolver: "#{@apiUrlKeyResolver}"
+            - name: RequestRateLimiter
+              args:
+                rate-limitter: "#{@customRedisRateLimiter}"
+                key-resolver: "#{@apiKeyResolver}"
+
+
+logging:
+  level:
+    root: DEBUG

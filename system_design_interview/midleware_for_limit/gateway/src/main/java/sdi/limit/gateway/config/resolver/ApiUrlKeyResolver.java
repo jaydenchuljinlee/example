@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class ApiUrlKeyResolver {
     @Bean
-    KeyResolver apiUrlKeyResolver() {
-        return exchange -> Mono.just(exchange.getRequest().getURI().toString());
+    KeyResolver apiKeyResolver() {
+        return exchange -> Mono.just(exchange.getRequest().getURI().getPath());
     }
 }
