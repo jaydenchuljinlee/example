@@ -9,7 +9,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
-    private static final String HOST_NAME = "server";
+    private static final String HOST_NAME = "127.0.0.1";
     private static final int PORT = 6379;
 
     @Bean

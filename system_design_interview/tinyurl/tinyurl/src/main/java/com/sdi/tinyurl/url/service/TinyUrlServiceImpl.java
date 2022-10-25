@@ -31,7 +31,7 @@ public class TinyUrlServiceImpl implements TinyUrlService{
         return UrlDto.from(entity);
     }
 
-    @Cacheable(key = "#shortUrl", value = "getUrl")
+    @Cacheable(key = "#shortUrl", value = "UrlDto")
     @Override
     public UrlDto getUrl(String shortUrl) {
         Url entity = repository.findByShortUrl(shortUrl);
