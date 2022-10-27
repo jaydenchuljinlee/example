@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity @Getter
 public class Message {
     @Id
-    private String id;
+    private long id;
 
     @Column(name = "sender")
     private String sender;

@@ -5,7 +5,9 @@ import com.sdi.alarm.entity.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface DeviceInformationRepository extends JpaRepository<DeviceInformation, String> {
-    DeviceInformation findById(String id);
+    Optional<DeviceInformation> findById(String id);
 }

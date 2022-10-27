@@ -1,8 +1,6 @@
 package com.sdi.alarm.dto;
 
-import com.sdi.alarm.b_enum.MessageType;
 import com.sdi.alarm.entity.DeviceInformation;
-import com.sdi.alarm.entity.Message;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

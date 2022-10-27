@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class ResponseMessage {
-    private String id;
+    private long id;
     private MessageType messageType;
     private String receiver;
     private String contents;

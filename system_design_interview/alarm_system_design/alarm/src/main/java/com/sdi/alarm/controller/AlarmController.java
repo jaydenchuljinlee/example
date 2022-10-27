@@ -18,7 +18,7 @@ public class AlarmController {
     @PostMapping
     public ResponseEntity<RequestMessage> send(@RequestBody RequestMessage requestMessage) {
 
-
+         alarmService.send(requestMessage);
 
         return ResponseEntity
                 .ok()

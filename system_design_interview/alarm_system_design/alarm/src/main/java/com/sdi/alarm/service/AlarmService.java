@@ -6,5 +6,5 @@ import com.sdi.alarm.dto.ResponseMessage;
 
 public interface AlarmService {
     ResponseMessage send(RequestMessage requestMessage);
-    DeviceDto getMessage(String id);
+
 }

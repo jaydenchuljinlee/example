@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor @Getter @Setter
 public class RequestMessage {
     private MessageType type;
     private String contents;
+    private List<String> targetList;
 }
