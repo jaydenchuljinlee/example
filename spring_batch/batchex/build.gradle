@@ -35,3 +35,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+def jobs = 'jdbcPagingItemReaderJob'
+def profiles = 'mysql'
+
+bootRun {
+	args = ["--job.name=" + jobs, "--spring.profiles.active=" + profiles]
+}
