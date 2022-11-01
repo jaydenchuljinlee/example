@@ -35,9 +35,10 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-def jobs = 'jdbcPagingItemReaderJob'
+def jobs = 'processorCompositeBatch'
 def profiles = 'mysql'
 
 bootRun {
-	args = ["--job.name=" + jobs, "--spring.profiles.active=" + profiles]
+	args = ["--job.name=" + jobs]
+	systemProperty("spring.config.activate.on-profile", profiles)
 }
