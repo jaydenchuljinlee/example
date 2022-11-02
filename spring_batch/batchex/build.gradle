@@ -36,7 +36,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 def jobs = 'processorCompositeBatch'
-def profiles = 'mysql'
+def profiles = 'h2'
 
 bootRun {
 	args = ["--job.name=" + jobs]
