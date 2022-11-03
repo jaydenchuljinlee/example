@@ -35,7 +35,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-def jobs = 'processorCompositeBatch'
+def jobs = 'multiThreadPagingBatch'
 def profiles = 'h2'
 
 bootRun {

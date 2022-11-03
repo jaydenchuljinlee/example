@@ -24,9 +24,20 @@ public class Pay2 {
     private String txName;
     private LocalDateTime txDateTime;
 
+    private Pay2(long id, long amount, String txName, LocalDateTime txDateTime) {
+        this.id = id;
+        this.amount = amount;
+        this.txName = txName;
+        this.txDateTime = txDateTime;
+    }
+
     public Pay2(Long amount, String txName, LocalDateTime txDateTime) {
         this.amount = amount;
         this.txName = txName;
         this.txDateTime = txDateTime;
+    }
+
+    public static Pay2 from(Pay pay) {
+        return new Pay2(pay.getId(), pay.getAmount(), pay.getTxName(), pay.getTxDateTime());
     }
 }
