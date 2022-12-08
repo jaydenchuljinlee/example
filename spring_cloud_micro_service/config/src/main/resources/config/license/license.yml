@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://localhost:3306/bbrick?serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false
+      username: root
+      password: 1234
+      dirver-class-name: com.mysql.cj.jdbc.Driver
