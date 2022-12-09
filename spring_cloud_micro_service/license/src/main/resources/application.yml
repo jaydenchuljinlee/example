@@ -1,10 +1,14 @@
 spring:
+  application:
+    name: license
   config:
-    import: "optional:configserver:http://localhost:8888"
+    import: "optional:configserver:http://localhost:8761/eureka/config"
 
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
