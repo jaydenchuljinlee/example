@@ -1,6 +1,7 @@
+
 spring:
   application:
-    name: license
+    name: organization
   profiles:
     active: local
   config:

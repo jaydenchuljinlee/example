@@ -2,8 +2,11 @@
 server:
   port: 8888
 spring:
+  application:
+    name: configserver
   cloud:
     config:
+      name: configserver
       discovery:
         enabled: true
       server:
@@ -11,6 +14,6 @@ spring:
         # encrypt.enabled: false
         git:
           uri: https://github.com/ironpublic/spring_cloud_config/
-          searchPaths: licensingservice
+          searchPaths: license, organization
           username: ironpublic
           password: wsxEDC680!
