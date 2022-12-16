@@ -5,6 +5,8 @@ management:
         include: "*"
 
 server:
+  application:
+    name: gateway
   port: 5555
 
   #Setting logging levels
