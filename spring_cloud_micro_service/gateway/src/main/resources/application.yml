@@ -10,3 +10,21 @@ eureka:
     waitTimeInMsWhenSyncEmpty: 5
   serviceUrl:
     defaultZone: http://localhost:8761
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - "gateway"
+  endpoint:
+    gateway:
+      enabled: true
+
+cloud:
+  gateway:
+    routes:
+      - id: license
+        uri: http://localhost:8082
+        predicates:
+          - Path=/v1/**

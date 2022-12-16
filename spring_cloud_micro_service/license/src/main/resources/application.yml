@@ -1,3 +1,13 @@
+server:
+  port: 8082
+
+logging:
+  level:
+    root: info
+    com:
+      ms:
+        license: debug
+
 spring:
   application:
     name: license
@@ -14,3 +24,33 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true # actuator 정보 노출을 위한 설정
+        ringBufferSizeInClosedState: 2 # 닫힌 상태에서의 호출 수로, 서킷을 열어야 할지 결정할 때 사용한다.
+        ringBufferSizeInHalfOpenState: 3 # 반열림 상태에서의 호출 수로, 서킷을 다시 열거나 닫힘 상태로 돌아갈지를 결정할 때 사용 한다.
+        failureRateThreshold: 80 # 실패한 호출에 대한 임계값(백분율)으로 이 값을 초과하면 서킷이 열린다.
+        waitDurationInOpenState: 1s # 열림 상태를 유지하는 시간, 해당 시간이후 반열림 상태로 변경된다.
+        slidingWindowType: TIME_BASED
+    instances:
+      organization:
+        baseConfig: default
+      license:
+        baseConfig: default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true

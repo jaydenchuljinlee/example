@@ -48,6 +48,7 @@ dependencies {
 
 	// utils
 	compileOnly 'org.projectlombok:lombok'
+	implementation 'io.github.resilience4j:resilience4j-spring-boot2'
 
 	// processor
 	annotationProcessor 'org.projectlombok:lombok'
