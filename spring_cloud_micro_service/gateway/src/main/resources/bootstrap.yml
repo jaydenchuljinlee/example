@@ -3,7 +3,7 @@ spring:
     name: gateway
   profiles:
     active:
-      default
+      local
   cloud:
     config:
       enabled: true

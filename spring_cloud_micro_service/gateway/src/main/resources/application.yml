@@ -12,9 +12,10 @@ server:
   #Setting logging levels
 logging:
   level:
-    com.netflix: WARN
-    org.springframework.web: WARN
-    com.thoughtmechanix: DEBUG
+    root: info
+    com:
+      ms:
+        gateway: debug
 
 eureka:
   instance:
@@ -33,3 +34,5 @@ spring:
           uri: lb://license
           predicates:
             - Path=/**
+          filters:
+            - TrackingFilter

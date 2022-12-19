@@ -9,7 +9,6 @@ import org.springframework.web.reactive.result.view.RequestContext;
 import java.util.Objects;
 
 @RequiredArgsConstructor
-@Component
 public class FilterUtils {
     public static final String CORRELATION_ID = "tmx-correlation-id";
     public static final String AUTH_TOKEN     = "tmx-auth-token";

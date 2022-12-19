@@ -2,15 +2,19 @@ package com.ms.gateway.filter;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 @Slf4j
+@Component
 public class TrackingFilter extends AbstractGatewayFilterFactory<TrackingFilter.Config> {
+    public TrackingFilter() {
+        super(Config.class);
+    }
 
     @Override
     public GatewayFilter apply(Config config) {
@@ -25,8 +29,8 @@ public class TrackingFilter extends AbstractGatewayFilterFactory<TrackingFilter.
                 String correlationId = java.util.UUID.randomUUID().toString();
                 filterUtils.setCorrelationId(correlationId);
             }
-            
-            log.debug("Processing incomming request for {}", request.getPath());
+
+            log.debug("Processing incoming request for {}", request.getPath());
 
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 
