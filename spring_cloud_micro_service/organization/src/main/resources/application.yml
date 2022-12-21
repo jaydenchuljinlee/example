@@ -6,6 +6,20 @@ spring:
     active: local
   config:
     import: "optional:configserver:http://localhost:8888"
+  cloud:
+    stream:
+      kafka:
+        bindings:
+          producer-out-0:
+            producer:
+              configuration:
+                key:
+                  serializer: org.apache.kafka.common.serialization.StringSerializer
+        binder:
+          brokers: localhost:9092
+          zkNodes: localhost:2181
+        function:
+          definition: orgChangeTopic
 
 eureka:
   instance:

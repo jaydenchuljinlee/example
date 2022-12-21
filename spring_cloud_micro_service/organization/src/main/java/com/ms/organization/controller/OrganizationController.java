@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "v1/organization")
 @RestController
 public class OrganizationController {
-    private OrganizationService service;
+    private final OrganizationService service;
 
-    @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
+    @GetMapping(value="/{organizationId}")
     public Organization getOrganization(@PathVariable("organizationId") String organizationId) {
         return service.getOrg(organizationId);
     }
 
-    @RequestMapping(value="/{organizationId}",method = RequestMethod.PUT)
+    @PutMapping(value="/{organizationId}")
     public void updateOrganization(@PathVariable("organizationId") String orgId, @RequestBody Organization org) {
         service.updateOrg( org );
     }
 
-    @RequestMapping(value="/{organizationId}",method = RequestMethod.POST)
+    @PostMapping
     public void saveOrganization(@RequestBody Organization org) {
         service.saveOrg( org );
     }
 
-    @RequestMapping(value="/{organizationId}",method = RequestMethod.DELETE)
+    @DeleteMapping(value="/{organizationId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrganization( @PathVariable("orgId") String orgId,  @RequestBody Organization org) {
         service.deleteOrg( org );

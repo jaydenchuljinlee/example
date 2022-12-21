@@ -1,5 +1,6 @@
 package com.ms.organization.service;
 
+import com.ms.organization.config.KafkaProducer;
 import com.ms.organization.domain.Organization;
 import com.ms.organization.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Service
 public class OrganizationService {
-    private OrganizationRepository repository;
+    private final OrganizationRepository repository;
+    private final KafkaProducer producer;
 
     public Organization getOrg(String organizationId) {
         Optional<Organization> organization = repository.findById(organizationId);
@@ -26,6 +28,8 @@ public class OrganizationService {
         org.setId(UUID.randomUUID().toString());
 
         repository.save(org);
+
+        producer.send(org);
     }
 
     public void updateOrg(Organization org) {
