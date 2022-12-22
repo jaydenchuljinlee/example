@@ -33,12 +33,12 @@ spring:
         - id: license
           uri: lb://license
           predicates:
-            - Path=/**
+            - Path=/v1/organizations/**
           filters:
             - TrackingFilter
         - id: organization
-            uri: lb://organization
-            predicates:
-              - Path=/**
-            filters:
-              - TrackingFilter
+          uri: lb://organization
+          predicates:
+            - Path=/v1/organization/**
+          filters:
+            - TrackingFilter
