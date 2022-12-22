@@ -15,6 +15,29 @@ spring:
     active: local
   config:
     import: "optional:configserver:http://localhost:8888"
+  cloud:
+    stream:
+      source: process
+      bindings:
+        process-in-0:
+          destination: process-1
+          consumer:
+            use-native-decoding: true
+      kafka:
+        bindings:
+          process-in-0:
+            consumer:
+              configuration:
+                key:
+                  deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                value:
+                  deserializer: com.ms.organization.kafka.MessageDeserializer
+                specific:
+                  avro:
+                    reader: true
+        binder:
+          brokers: localhost:9092
+          zkNodes: localhost:2181
 
 eureka:
   instance:

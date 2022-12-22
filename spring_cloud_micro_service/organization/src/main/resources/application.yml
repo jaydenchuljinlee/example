@@ -8,18 +8,37 @@ spring:
     import: "optional:configserver:http://localhost:8888"
   cloud:
     stream:
+      source: process
+      bindings:
+        process-out-0:
+          destination: process-1
+          producer:
+            use-native-encoding: true
       kafka:
         bindings:
-          producer-out-0:
+          process-out-0:
             producer:
               configuration:
                 key:
                   serializer: org.apache.kafka.common.serialization.StringSerializer
+                value:
+                  serializer: com.ms.organization.kafka.MessageSerializer
+                specific:
+                  avro:
+                    reader: true
         binder:
           brokers: localhost:9092
           zkNodes: localhost:2181
-        function:
-          definition: orgChangeTopic
+
+
+
+
+logging:
+  level:
+    root: info
+    com:
+      ms:
+        organization: debug
 
 eureka:
   instance:

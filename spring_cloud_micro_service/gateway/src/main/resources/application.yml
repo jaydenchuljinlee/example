@@ -36,3 +36,9 @@ spring:
             - Path=/**
           filters:
             - TrackingFilter
+        - id: organization
+            uri: lb://organization
+            predicates:
+              - Path=/**
+            filters:
+              - TrackingFilter
