@@ -54,10 +54,18 @@ public class FilterUtils {
     }
 
     private void setPropertyValueBy(String key, String value) {
-        request.getHeaders().add(key, value);
+        if (request.getHeaders().containsKey(key)) {
+            Objects.requireNonNull(request.getHeaders().get(key)).add(value);
+        }
+
+        request.mutate().header(key, value);
     }
 
     private String getPropertyValueBy(String key) {
-        return Objects.requireNonNull(request.getHeaders().get(key)).toString();
+        if (request.getHeaders().containsKey(key)) {
+            return Objects.requireNonNull(request.getHeaders().get(key)).toString();
+        }
+
+        return null;
     }
 }

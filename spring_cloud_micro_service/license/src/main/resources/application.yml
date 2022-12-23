@@ -15,6 +15,8 @@ spring:
     active: local
   config:
     import: "optional:configserver:http://localhost:8888"
+  zipkin:
+    base-url: localhost:9411
   redis:
     host: localhost
     port: 6379
