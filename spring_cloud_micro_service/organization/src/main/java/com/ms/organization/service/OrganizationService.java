@@ -33,7 +33,10 @@ public class OrganizationService {
     }
 
     public void updateOrg(Organization org) {
+
         repository.save(org);
+
+        producer.send(org);
     }
 
     public void deleteOrg(Organization org) {

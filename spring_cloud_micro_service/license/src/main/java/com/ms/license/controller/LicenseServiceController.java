@@ -1,5 +1,6 @@
 package com.ms.license.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ms.license.model.License;
 import com.ms.license.model.Organization;
 import com.ms.license.service.LicenseService;
@@ -30,6 +31,7 @@ public class LicenseServiceController {
     }
 
     @GetMapping("/")
+    @ResponseBody
     public Organization getLicense(@PathVariable("organizationId") String organizationId) {
         return redisService.getOrgBy(organizationId);
     }
