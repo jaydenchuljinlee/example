@@ -6,8 +6,13 @@ spring:
     active: local
   config:
     import: "optional:configserver:http://localhost:8888"
-  zipkin:
-    base-url: localhost:9411
+  sleuth:
+    enabled: true
+    sampler:
+      percentage: 1
+    zipkin:
+      enabled: true
+      baseUrl: localhost:9411
   cloud:
     stream:
       source: process

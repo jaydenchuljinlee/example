@@ -30,13 +30,11 @@ public class TrackingFilter extends AbstractGatewayFilterFactory<TrackingFilter.
                 filterUtils.setCorrelationId(correlationId);
             }
 
-            log.debug("tmx-correlation-id: " + filterUtils.getCorrelationId() + ", " + request.getHeaders().get("tmx-correlation-id"));
+            log.debug("tmx-correlation-id: " + filterUtils.getCorrelationId() + ", " + exchange.getRequest().getHeaders().get("tmx-correlation-id"));
 
             log.debug("Processing incoming request for {}", request.getPath());
 
-            return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-
-            }));
+            return chain.filter(exchange);
         });
     }
 
