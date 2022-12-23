@@ -47,6 +47,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
+	// cache
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'io.lettuce:lettuce-core:6.2.2.RELEASE'
+
 	// utils
 	compileOnly 'org.projectlombok:lombok'
 	implementation 'io.github.resilience4j:resilience4j-spring-boot2'

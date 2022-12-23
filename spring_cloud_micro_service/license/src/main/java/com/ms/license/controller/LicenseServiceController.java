@@ -1,14 +1,13 @@
 package com.ms.license.controller;
 
 import com.ms.license.model.License;
+import com.ms.license.model.Organization;
 import com.ms.license.service.LicenseService;
-import com.ms.license.utils.UserContextHolder;
+import com.ms.license.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping(value = "v1/organizations/{organizationId}/licenses")
@@ -16,7 +15,8 @@ import java.util.List;
 public class LicenseServiceController {
     private static final Logger logger = LoggerFactory.getLogger(LicenseServiceController.class);
 
-    private final LicenseService service;
+    private final RedisService redisService;
+    private final LicenseService licenseService;
 
     @GetMapping(value = "/{licenseId}")
     public License getLicense(
@@ -30,9 +30,8 @@ public class LicenseServiceController {
     }
 
     @GetMapping("/")
-    public List<License> getLicense(@PathVariable("organizationId") String organizationId) {
-        //logger.debug("LicenseServiceController Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
-        return service.getLicenseByOrg(organizationId);
+    public Organization getLicense(@PathVariable("organizationId") String organizationId) {
+        return redisService.getOrgBy(organizationId);
     }
 
     @PutMapping(value = "{licenseId}")
