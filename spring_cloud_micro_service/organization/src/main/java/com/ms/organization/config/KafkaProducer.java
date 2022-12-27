@@ -5,12 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 @Slf4j
 @RequiredArgsConstructor
