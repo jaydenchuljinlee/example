@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: optimal-img
+  name: optimal-img
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: optimal-img
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: optimal-img
+    spec:
+      containers:
+      - image: optimal-img
+        name: optimal-img
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: optimal-img
+  name: optimal-img
+spec:
+  ports:
+  - name: 8080-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: optimal-img
+  type: ClusterIP
+status:
+  loadBalancer: {}
