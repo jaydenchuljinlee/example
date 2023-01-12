@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: success1
+  name: success1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: success1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: success1
+    spec:
+      containers:
+      - image: 172.16.11.136:8443/optimal-img
+        name: optimal-img
+        resources: {}
+status: {}

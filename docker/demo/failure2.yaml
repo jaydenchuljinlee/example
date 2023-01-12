@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: failure2
+  name: failure2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: failure2
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: failure2
+    spec:
+      containers:
+      - image: optimal-img
+        imagePullPolicy: Never
+        name: optimal-img
+        resources: {}
+status: {}
